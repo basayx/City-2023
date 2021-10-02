@@ -9,12 +9,6 @@ public class Road : Building
     public override void Initialize(string id, Grid connectedGrid = null, bool newCreated = false)
     {
         base.Initialize(id, connectedGrid, newCreated);
-
-        if (newCreated)
-        {
-            DataManager.Instance.SaveBuildingPosition(ID, new Vector2(transform.position.x, transform.position.z));
-            DataManager.Instance.SaveBuildingRotation(ID, transform.localEulerAngles.y);
-        }
     }
 
     public override void UpdateLevelView()
@@ -48,6 +42,7 @@ public class Road : Building
         else
             closedRightSide = true;
 
+
         int roadVariationIndex = 0;
 
         if (closedTopSide && closedBotSide && closedLeftSide && closedRightSide)
@@ -64,7 +59,7 @@ public class Road : Building
 
         else
         if (closedTopSide && closedBotSide && !closedLeftSide && closedRightSide)
-            roadVariationIndex = 1;
+            roadVariationIndex = 6;
         else
         if (closedTopSide && !closedBotSide && !closedLeftSide && closedRightSide)
             roadVariationIndex = 1;
@@ -77,7 +72,7 @@ public class Road : Building
 
         else
         if (closedTopSide && closedBotSide && closedLeftSide && !closedRightSide)
-            roadVariationIndex = 2;
+            roadVariationIndex = 6;
         else
         if (closedTopSide && !closedBotSide && closedLeftSide && !closedRightSide)
             roadVariationIndex = 2;
@@ -104,7 +99,6 @@ public class Road : Building
         if (closedTopSide && !closedBotSide && !closedLeftSide && !closedRightSide)
             roadVariationIndex = 8;
 
-        Debug.Log(ID + " | " + closedLeftSide + " | " + roadVariationIndex);
 
         for (int i = 0; i < RoadVariations.Length; i++)
         {

@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
 		var buildingArea = col.gameObject.GetComponent<BuildingArea>();
 		if (buildingArea)
 		{
+			Animator.SetBool("Working", true);
 			BuildingManager.Instance.ChangeSelectedBuildingArea(buildingArea);
 		}
 	}
@@ -84,6 +85,7 @@ public class PlayerController : MonoBehaviour
 		var grid = col.gameObject.GetComponent<Grid>();
         if (grid && grid == BuildingManager.Instance.SelectedGrid)
 		{
+			Animator.SetBool("Working", false);
 			BuildingManager.Instance.ChangeSelectedGrid(null);
 			grid.ChangeVisibilityOfBuildingAreas(false);
         }
@@ -91,6 +93,7 @@ public class PlayerController : MonoBehaviour
 		var buildingArea = col.gameObject.GetComponent<BuildingArea>();
 		if (buildingArea && buildingArea == BuildingManager.Instance.SelectedBuildingArea)
 		{
+			Animator.SetBool("Working", false);
 			BuildingManager.Instance.ChangeSelectedBuildingArea(null);
 		}
 	}

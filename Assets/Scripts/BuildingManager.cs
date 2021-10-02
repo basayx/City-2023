@@ -22,6 +22,34 @@ public class BuildingManager : MonoBehaviour
     public Grid SelectedGrid;
     public BuildingArea SelectedBuildingArea;
     public Building SelectedBuilding;
+    public BuildingUIButton SelectedBuildingUIButton;
+
+    public float BuildDelay = 1f;
+    float buildDelayLeft = 1f;
+
+    private void Update()
+    {
+        if(SelectedBuilding && SelectedBuildingArea )
+        {
+            if (!GameManager.Instance.Player.Animator.GetBool("Walking"))
+            {
+                if (buildDelayLeft > 0f)
+                {
+                    buildDelayLeft -= 1f * Time.deltaTime;
+                    SelectedBuildingArea.AreaCompleteSprite.fillAmount = 1f - buildDelayLeft;
+                }
+                else
+                {
+                    BuildTheSelectedBuildingToSelectedArea();
+                }
+            }
+            else
+            {
+                buildDelayLeft = BuildDelay;
+                SelectedBuildingArea.AreaCompleteSprite.fillAmount = 0f;
+            }
+        }
+    }
 
     public Building GetBuildPrefabByTypeID(string typeID)
     {
@@ -45,13 +73,26 @@ public class BuildingManager : MonoBehaviour
 
     public void ChangeSelectedBuildingArea(BuildingArea buildingArea = null)
     {
+        buildDelayLeft = BuildDelay;
         if(SelectedBuildingArea != null)
-            SelectedBuildingArea.AreaViewSprite.color = new Color32(255, 255, 255, 255);
+            SelectedBuildingArea.ChangeSelectedStatus(false);
+
         SelectedBuildingArea = buildingArea;
-        SelectedBuildingArea.AreaViewSprite.color = new Color32(255, 244, 0, 255);
+        if (SelectedBuildingArea)
+            SelectedBuildingArea.ChangeSelectedStatus(true);
     }
 
-    public void ChangeSelectedBuilding(string typeID)
+    public void SelectBuildingUIButton(BuildingUIButton buildingUIButton)
+    {
+        if (SelectedBuildingUIButton)
+            SelectedBuildingUIButton.ChangeHighlighStatus(false);
+        SelectedBuildingUIButton = buildingUIButton;
+        SelectedBuildingUIButton.ChangeHighlighStatus(true);
+
+        ChangeSelectedBuilding(buildingUIButton.TargetBuildingTypeID);
+    }
+
+    private void ChangeSelectedBuilding(string typeID)
     {
         SelectedBuilding = GetBuildPrefabByTypeID(typeID);
     }
@@ -60,11 +101,19 @@ public class BuildingManager : MonoBehaviour
     {
         if(SelectedBuildingArea && SelectedBuilding)
             SelectedBuildingArea.BuildToConnectedGrid(SelectedBuilding);
+
+        ChangeSelectedBuildingArea(null);
     }
 
     public void LevelUpTheBuildingFromSelectedBuildingArea()
     {
         if (SelectedBuildingArea && SelectedBuildingArea.ConnectedGrid && SelectedBuildingArea.ConnectedGrid.CurrentBuilding)
             SelectedBuildingArea.ConnectedGrid.CurrentBuilding.LevelUp();
+    }
+
+    public GameObject BuildingsPanel;
+    public void BuildingsPanelOpenOrClose()
+    {
+        BuildingsPanel.SetActive(!BuildingsPanel.activeSelf);
     }
 }

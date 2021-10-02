@@ -120,16 +120,17 @@ public class Grid : MonoBehaviour
         Building building = Build(buildingPrefab, buildingArea.transform.localEulerAngles.y);
         CurrentBuilding = building;
 
-        if (buildingArea.Side == Sides.T)
-            DataManager.Instance.SaveBuildingCreationSideInfo(CurrentBuilding.ID, "T");
-        else if (buildingArea.Side == Sides.B)
-            DataManager.Instance.SaveBuildingCreationSideInfo(CurrentBuilding.ID, "B");
-        else if (buildingArea.Side == Sides.L)
-            DataManager.Instance.SaveBuildingCreationSideInfo(CurrentBuilding.ID, "L");
-        else if (buildingArea.Side == Sides.R)
-            DataManager.Instance.SaveBuildingCreationSideInfo(CurrentBuilding.ID, "R");
-
         DataManager.Instance.SaveBuildingID(ID, buildingPrefab.TypeID);
+
+        if (buildingArea.Side == Sides.T)
+            DataManager.Instance.SaveBuildingCreationSideInfo(DataManager.Instance.GetSavedBuildingID(ID), "T");
+        else if (buildingArea.Side == Sides.B)
+            DataManager.Instance.SaveBuildingCreationSideInfo(DataManager.Instance.GetSavedBuildingID(ID), "B");
+        else if (buildingArea.Side == Sides.L)
+            DataManager.Instance.SaveBuildingCreationSideInfo(DataManager.Instance.GetSavedBuildingID(ID), "L");
+        else if (buildingArea.Side == Sides.R)
+            DataManager.Instance.SaveBuildingCreationSideInfo(DataManager.Instance.GetSavedBuildingID(ID), "R");
+
         CurrentBuilding.Initialize(DataManager.Instance.GetSavedBuildingID(ID), this, true);
     }
 

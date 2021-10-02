@@ -531,7 +531,7 @@ MonoBehaviour:
     GridSize:
       RowSize: 1
       ColoumnSize: 1
-  CreatedFromThisSide: 0
+  CreatedFromThisArea: {fileID: 0}
   RoadVariations:
   - {fileID: 6810937883166285656}
   - {fileID: 6831683165857335731}
@@ -564,7 +564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7797016905282474642
 Transform:
   m_ObjectHideFlags: 0

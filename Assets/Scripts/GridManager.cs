@@ -82,19 +82,137 @@ public class GridManager : MonoBehaviour
         return index;
     }
 
-    public bool CheckGridSize(Grid mainGrid, int rowSize = 1, int coloumnSize = 1)
+    public bool CheckGridSize(Grid mainGrid, int rowSize = 1, int coloumnSize = 1, Sides side = Sides.T)
     {
-        if (mainGrid.RowIndex + rowSize - 1 > CurrentGridMap.RowCount - 1 || mainGrid.ColoumnIndex + coloumnSize - 1 > CurrentGridMap.ColumnCount - 1)
-            return false;
-
-        for (int r = 0; r < rowSize; r++)
+        Debug.Log("bbb");
+        Debug.Log(side);
+        if (side == Sides.T)
         {
+            if (mainGrid.RowIndex + (rowSize - 1) > CurrentGridMap.RowCount - 1 ||
+                mainGrid.ColoumnIndex + ((coloumnSize - 1) / 2) > CurrentGridMap.ColumnCount - 1 || mainGrid.ColoumnIndex - ((coloumnSize - 1) / 2) < 0)
+                return false;
+
+            int possitiveC = coloumnSize / 2;
+            int neggativeC = coloumnSize / 2;
+            if (possitiveC + neggativeC < coloumnSize)
+                neggativeC += 1;
+
+            for (int r = 0; r < rowSize; r++)
+            {
+                for (int c = 1; c <= possitiveC; c++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex + r, mainGrid.ColoumnIndex + c);
+                    if (grid != null && grid.CurrentBuilding != null)
+                    {
+                        return false;
+                    }
+                }
+
+                for (int c = 0; c < neggativeC; c++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex + r, mainGrid.ColoumnIndex - c);
+                    if (grid != null && grid.CurrentBuilding != null)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        else if (side == Sides.B)
+        {
+            if (mainGrid.RowIndex - (rowSize - 1) < 0 ||
+                mainGrid.ColoumnIndex + ((coloumnSize - 1) / 2) > CurrentGridMap.ColumnCount - 1 || mainGrid.ColoumnIndex - ((coloumnSize - 1) / 2) < 0)
+                return false;
+
+            int possitiveC = coloumnSize / 2;
+            int neggativeC = coloumnSize / 2;
+            if (possitiveC + neggativeC < coloumnSize)
+                neggativeC += 1;
+
+            for (int r = 0; r < rowSize; r++)
+            {
+                for (int c = 1; c <= possitiveC; c++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex - r, mainGrid.ColoumnIndex + c);
+                    if (grid != null && grid.CurrentBuilding != null)
+                    {
+                        return false;
+                    }
+                }
+
+                for (int c = 0; c < neggativeC; c++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex - r, mainGrid.ColoumnIndex - c);
+                    if (grid != null && grid.CurrentBuilding != null)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        else if (side == Sides.L)
+        {
+            if (mainGrid.ColoumnIndex - (coloumnSize - 1) < 0 ||
+                mainGrid.RowIndex + ((rowSize - 1) / 2) > CurrentGridMap.RowCount - 1 || mainGrid.RowIndex - ((rowSize - 1) / 2) < 0)
+                return false;
+
+            int possitiveR = rowSize / 2;
+            int neggativeR = rowSize / 2;
+            if (possitiveR + neggativeR < rowSize)
+                neggativeR += 1;
+
             for (int c = 0; c < coloumnSize; c++)
             {
-                Grid grid = GetGrid(mainGrid.RowIndex + r, mainGrid.ColoumnIndex + c);
-                if(grid != null && grid.CurrentBuilding != null)
+                for (int r = 1; r <= possitiveR; r++)
                 {
-                    return false;
+                    Grid grid = GetGrid(mainGrid.RowIndex + r, mainGrid.ColoumnIndex - c);
+                    Debug.Log(grid.ID + " | " + grid.CurrentBuilding);
+                    if (grid != null && grid.CurrentBuilding != null)
+                    {
+                        return false;
+                    }
+                }
+
+                for (int r = 0; r < neggativeR; r++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex - r, mainGrid.ColoumnIndex - c);
+                    Debug.Log(grid.ID + " | " + grid.CurrentBuilding);
+                    if (grid != null && grid.CurrentBuilding != null)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        else if (side == Sides.R)
+        {
+            if (mainGrid.ColoumnIndex + (coloumnSize - 1) > CurrentGridMap.ColumnCount - 1 ||
+                mainGrid.RowIndex + ((rowSize - 1) / 2) > CurrentGridMap.RowCount - 1 || mainGrid.RowIndex - ((rowSize - 1) / 2) < 0)
+                return false;
+
+            int possitiveR = rowSize / 2;
+            int neggativeR = rowSize / 2;
+            if (possitiveR + neggativeR < rowSize)
+                neggativeR += 1;
+
+            for (int c = 0; c < coloumnSize; c++)
+            {
+                for (int r = 1; r <= possitiveR; r++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex + r, mainGrid.ColoumnIndex + c);
+                    if (grid != null && grid.CurrentBuilding != null)
+                    {
+                        return false;
+                    }
+                }
+
+                for (int r = 0; r < neggativeR; r++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex - r, mainGrid.ColoumnIndex + c);
+                    if (grid != null && grid.CurrentBuilding != null)
+                    {
+                        return false;
+                    }
                 }
             }
         }
@@ -102,14 +220,98 @@ public class GridManager : MonoBehaviour
         return true;
     }
 
-    public void FillOtherGridsBySize(Building building)
+    public void FillOtherGridsBySize(Building building, Sides side = Sides.T)
     {
-        for (int r = 0; r < building.GridSize.RowSize; r++)
+        Grid mainGrid = building.ConnectedGrid;
+        int rowSize = building.GridSize.RowSize;
+        int coloumnSize = building.GridSize.ColoumnSize;
+
+        if (side == Sides.T)
         {
-            for (int c = 0; c < building.GridSize.ColoumnSize; c++)
+            int possitiveC = coloumnSize / 2;
+            int neggativeC = coloumnSize / 2;
+            if (possitiveC + neggativeC < coloumnSize)
+                neggativeC += 1;
+
+            for (int r = 0; r < rowSize; r++)
             {
-                Grid grid = GetGrid(building.ConnectedGrid.RowIndex + r, building.ConnectedGrid.ColoumnIndex + c);
-                grid.CurrentBuilding = building;
+                for (int c = 1; c <= possitiveC; c++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex + r, mainGrid.ColoumnIndex + c);
+                    grid.CurrentBuilding = building;
+                }
+
+                for (int c = 0; c < neggativeC; c++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex + r, mainGrid.ColoumnIndex - c);
+                    grid.CurrentBuilding = building;
+                }
+            }
+        }
+        else if (side == Sides.B)
+        {
+            int possitiveC = coloumnSize / 2;
+            int neggativeC = coloumnSize / 2;
+            if (possitiveC + neggativeC < coloumnSize)
+                neggativeC += 1;
+
+            for (int r = 0; r < rowSize; r++)
+            {
+                for (int c = 1; c <= possitiveC; c++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex - r, mainGrid.ColoumnIndex + c);
+                    grid.CurrentBuilding = building;
+                }
+
+                for (int c = 0; c < neggativeC; c++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex - r, mainGrid.ColoumnIndex - c);
+                    grid.CurrentBuilding = building;
+                }
+            }
+        }
+        else if (side == Sides.L)
+        {
+            int possitiveR = rowSize / 2;
+            int neggativeR = rowSize / 2;
+            if (possitiveR + neggativeR < rowSize)
+                neggativeR += 1;
+
+            for (int c = 0; c < coloumnSize; c++)
+            {
+                for (int r = 1; r <= possitiveR; r++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex + r, mainGrid.ColoumnIndex - c);
+                    grid.CurrentBuilding = building;
+                }
+
+                for (int r = 0; r < neggativeR; r++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex - r, mainGrid.ColoumnIndex - c);
+                    grid.CurrentBuilding = building;
+                }
+            }
+        }
+        else if (side == Sides.R)
+        {
+            int possitiveR = rowSize / 2;
+            int neggativeR = rowSize / 2;
+            if (possitiveR + neggativeR < rowSize)
+                neggativeR += 1;
+
+            for (int c = 0; c < coloumnSize; c++)
+            {
+                for (int r = 1; r <= possitiveR; r++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex + r, mainGrid.ColoumnIndex + c);
+                    grid.CurrentBuilding = building;
+                }
+
+                for (int r = 0; r < neggativeR; r++)
+                {
+                    Grid grid = GetGrid(mainGrid.RowIndex - r, mainGrid.ColoumnIndex + c);
+                    grid.CurrentBuilding = building;
+                }
             }
         }
     }

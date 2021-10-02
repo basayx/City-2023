@@ -25,7 +25,8 @@ public class Building : MonoBehaviour
         public GridSizeProperty GridSize;
     }
     public LevelProperty[] LevelProperties;
-    public Sides CreatedFromThisSide;
+
+    public BuildingArea CreatedFromThisArea;
 
     public virtual void Initialize(string id, Grid connectedGrid = null, bool newCreated = false)
     {
@@ -37,7 +38,24 @@ public class Building : MonoBehaviour
 
         Level = DataManager.Instance.GetBuildingLevel(ID);
         GridSize = LevelProperties[Level].GridSize;
-        GridManager.Instance.FillOtherGridsBySize(this);
+
+        string creationSide = DataManager.Instance.GetBuildingCreationSideInfo(ID);        
+        if (creationSide != "")
+        {
+            if (creationSide == "T" && ConnectedGrid.TopBuildingArea)
+                CreatedFromThisArea = ConnectedGrid.TopBuildingArea;
+            else if (creationSide == "B" && ConnectedGrid.BotBuildingArea)
+                CreatedFromThisArea = ConnectedGrid.BotBuildingArea;
+            else if (creationSide == "L" && ConnectedGrid.LeftBuildingArea)
+                CreatedFromThisArea = ConnectedGrid.LeftBuildingArea;
+            else if (creationSide == "R" && ConnectedGrid.RightBuildingArea)
+                CreatedFromThisArea = ConnectedGrid.RightBuildingArea;
+        }
+
+        if (this.GetType() != typeof(Road))
+            transform.localRotation = Quaternion.Euler(0, CreatedFromThisArea.transform.localEulerAngles.y, 0);
+
+        GridManager.Instance.FillOtherGridsBySize(this, (CreatedFromThisArea ? CreatedFromThisArea.Side :Sides.T));
 
         if (newCreated)
         {
@@ -48,22 +66,9 @@ public class Building : MonoBehaviour
             if (connectedGrid.LeftSideGrid && connectedGrid.LeftSideGrid.CurrentBuilding)
                 connectedGrid.LeftSideGrid.CurrentBuilding.UpdateLevelView();
             if (connectedGrid.RightSideGrid && connectedGrid.RightSideGrid.CurrentBuilding)
-                connectedGrid.RightSideGrid.CurrentBuilding.UpdateLevelView();
+                connectedGrid.RightSideGrid.CurrentBuilding.UpdateLevelView();          
 
             UpdateLevelView();
-        }
-
-        string creationSide = DataManager.Instance.GetBuildingCreationSideInfo(ID);
-        if (creationSide != "")
-        {
-            if(creationSide == "T")
-                CreatedFromThisSide = Sides.T;
-            else if (creationSide == "B")
-                CreatedFromThisSide = Sides.B;
-            else if (creationSide == "L")
-                CreatedFromThisSide = Sides.L;
-            else if (creationSide == "R")
-                CreatedFromThisSide = Sides.R;
         }
     }
 
@@ -84,7 +89,7 @@ public class Building : MonoBehaviour
 
         LevelProperty levelProperty = LevelProperties[Level + 1];
 
-        if (GridManager.Instance.CheckGridSize(ConnectedGrid, levelProperty.GridSize.RowSize, levelProperty.GridSize.ColoumnSize) == false)
+        if (GridManager.Instance.CheckGridSize(ConnectedGrid, levelProperty.GridSize.RowSize, levelProperty.GridSize.ColoumnSize, (CreatedFromThisArea ? CreatedFromThisArea.Side : Sides.T)) == false)
             return;
 
         if(DataManager.Money > levelProperty.Price)
