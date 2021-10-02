@@ -624,12 +624,6 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: fffa19734e19d4882b9a458cfbcfc5b3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54a60470ee4d56046b34840ce90220be, type: 3}
---- !u!95 &882710870 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95329572343938658, guid: 54a60470ee4d56046b34840ce90220be,
-    type: 3}
-  m_PrefabInstance: {fileID: 882710869}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &882710871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4491217207025030, guid: 54a60470ee4d56046b34840ce90220be,
@@ -1370,7 +1364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Joystick: {fileID: 434718746713057411}
   CharacterController: {fileID: 2144736397}
-  Animator: {fileID: 882710870}
+  Animator: {fileID: 1242080687}
   CanMove: 1
   Sensitivity: 0.75
   MovementSpeed: 4
