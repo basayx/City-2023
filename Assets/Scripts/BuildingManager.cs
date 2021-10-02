@@ -43,6 +43,8 @@ public class BuildingManager : MonoBehaviour
 
     public void ChangeSelectedBuildingArea(BuildingArea buildingArea = null)
     {
+        if (SelectedBuildingArea && SelectedBuildingArea.AreaViewGroup.activeSelf)
+            SelectedBuildingArea.ChangeVisibilityOfViewGroup();
         SelectedBuildingArea = buildingArea;
     }
 

@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
 		if (buildingArea)
 		{
 			BuildingManager.Instance.ChangeSelectedBuildingArea(buildingArea);
+			buildingArea.ChangeVisibilityOfViewGroup(true);
 		}
 	}
 
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
 		if (buildingArea && buildingArea == BuildingManager.Instance.SelectedBuildingArea)
 		{
 			BuildingManager.Instance.ChangeSelectedBuildingArea(null);
+			buildingArea.ChangeVisibilityOfViewGroup(false);
 		}
 	}
 }

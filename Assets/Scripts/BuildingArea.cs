@@ -45,7 +45,7 @@ public class BuildingArea : MonoBehaviour
             if (ConnectedBuilding)
                 ConnectedBuilding.UpdateView();
 
-            AreaViewGroup.SetActive(false);
+            ChangeVisibilityOfViewGroup();
         }
     }
 
@@ -78,6 +78,11 @@ public class BuildingArea : MonoBehaviour
         if (ConnectedBuilding)
             ConnectedBuilding.UpdateView();
 
-        AreaViewGroup.SetActive(false);
+        ChangeVisibilityOfViewGroup();
+    }
+
+    public void ChangeVisibilityOfViewGroup(bool status = false)
+    {
+        AreaViewGroup.SetActive(status);
     }
 }
