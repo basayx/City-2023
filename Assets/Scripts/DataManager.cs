@@ -23,6 +23,24 @@ public class DataManager : MonoBehaviour
         set => PlayerPrefs.SetInt("Vibration", value ? 1 : 0);
     }
 
+    public static int Money
+    {
+        get => PlayerPrefs.GetInt("Money", 0);
+        set => PlayerPrefs.SetInt("Money", value);
+    }
+
+    public int MoneyIncrease(int incereaseValue)
+    {
+        Money += incereaseValue;
+        return Money;
+    }
+
+    public int MoneyDecrease(int decreaseValue)
+    {
+        Money += decreaseValue;
+        return Money;
+    }
+
     public static int RoadCounter
     {
         get => PlayerPrefs.GetInt("RoadCounter", 0);
@@ -35,24 +53,24 @@ public class DataManager : MonoBehaviour
         return RoadCounter;
     }
 
-    public string GetSavedBuildingID(string buildingAreaID)
+    public string GetSavedBuildingID(string gridID)
     {
-        return PlayerPrefs.GetString(buildingAreaID + "_CurrentBuilding", "");
+        return PlayerPrefs.GetString(gridID + "_CurrentBuilding", "");
     }
 
-    public void SaveBuildingID(string buildingAreaID, string buildingTypeID)
+    public void SaveBuildingID(string gridID, string buildingTypeID)
     {
-        PlayerPrefs.SetString(buildingAreaID + "_CurrentBuilding", buildingAreaID + "_" + buildingTypeID);
-    }
-
-    public void SaveBuildingID(string buildingAreaID, string buildingTypeID, string no)
-    {
-        PlayerPrefs.SetString(buildingAreaID + "_CurrentBuilding", no + "_" + buildingTypeID);
+        PlayerPrefs.SetString(gridID + "_CurrentBuilding", gridID + "_" + buildingTypeID);
     }
 
     public int GetBuildingLevel(string buildingID)
     {
         return PlayerPrefs.GetInt(buildingID + "_Level", 0);
+    }
+
+    public void SaveBuildingLevel(string buildingID, int level)
+    {
+        PlayerPrefs.SetInt(buildingID + "_Level", level);
     }
 
     public Vector2? GetBuildingPosition(string buildingID)
@@ -72,5 +90,25 @@ public class DataManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat(buildingID + "_PosX", positionInfo.x);
         PlayerPrefs.SetFloat(buildingID + "_PosZ", positionInfo.y);
+    }
+
+    public float GetBuildingRotation(string buildingID)
+    {
+        return PlayerPrefs.GetFloat(buildingID + "_RotY", 0f);
+    }
+
+    public void SaveBuildingRotation(string buildingID, float value)
+    {
+        PlayerPrefs.SetFloat(buildingID + "_RotY", value);
+    }
+
+    public string GetBuildingCreationSideInfo(string buildingID)
+    {
+        return PlayerPrefs.GetString(buildingID + "_CreationSide", "");
+    }
+
+    public void SaveBuildingCreationSideInfo(string buildingID, string value)
+    {
+        PlayerPrefs.SetString(buildingID + "_CreationSide", value);
     }
 }

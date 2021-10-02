@@ -4,113 +4,107 @@ using UnityEngine;
 
 public class Road : Building
 {
-    public BuildingArea TopBuildingArea;
-    public BuildingArea LeftBuildingArea;
-    public BuildingArea RightBuildingArea;
-    public BuildingArea BotBuildingArea;
-
     public GameObject[] RoadVariations;
 
-    public override void Initialize(string id, BuildingArea connectedArea = null, bool newCreated = false)
+    public override void Initialize(string id, Grid connectedGrid = null, bool newCreated = false)
     {
+        base.Initialize(id, connectedGrid, newCreated);
+
         if (newCreated)
+        {
             DataManager.Instance.SaveBuildingPosition(ID, new Vector2(transform.position.x, transform.position.z));
-
-        base.Initialize(id, connectedArea, newCreated);
-
-        UpdateBuildingAreas();
+            DataManager.Instance.SaveBuildingRotation(ID, transform.localEulerAngles.y);
+        }
     }
 
-    public override void UpdateBuildingAreas()
+    public override void UpdateLevelView()
     {
-        if (TopBuildingArea)
-            TopBuildingArea.Initialize(ID + "_T", this);
-        if (LeftBuildingArea)
-            LeftBuildingArea.Initialize(ID + "_L", this);
-        if (RightBuildingArea)
-            RightBuildingArea.Initialize(ID + "_R", this);
-        if (BotBuildingArea)
-            BotBuildingArea.Initialize(ID + "_B", this);
-
-        if (ConnectedArea && BotBuildingArea)
-        {
-            if (ConnectedArea.Side == BuildingArea.Sides.T)
-            {
-                BotBuildingArea.CurrentBuilding = ConnectedArea.ConnectedBuilding;
-                BotBuildingArea.AreaViewGroup.SetActive(false);
-            }
-            if (ConnectedArea.Side == BuildingArea.Sides.L)
-            {
-                //RightBuildingArea.CurrentBuilding = ConnectedArea.ConnectedBuilding;
-                //RightBuildingArea.AreaViewGroup.SetActive(false);
-                BotBuildingArea.CurrentBuilding = ConnectedArea.ConnectedBuilding;
-                BotBuildingArea.AreaViewGroup.SetActive(false);
-            }
-            if (ConnectedArea.Side == BuildingArea.Sides.R)
-            {
-                //LeftBuildingArea.CurrentBuilding = ConnectedArea.ConnectedBuilding;
-                //LeftBuildingArea.AreaViewGroup.SetActive(false);
-                BotBuildingArea.CurrentBuilding = ConnectedArea.ConnectedBuilding;
-                BotBuildingArea.AreaViewGroup.SetActive(false);
-            }
-            if (ConnectedArea.Side == BuildingArea.Sides.B)
-            {
-                //TopBuildingArea.CurrentBuilding = ConnectedArea.ConnectedBuilding;
-                //TopBuildingArea.AreaViewGroup.SetActive(false);
-                BotBuildingArea.CurrentBuilding = ConnectedArea.ConnectedBuilding;
-                BotBuildingArea.AreaViewGroup.SetActive(false);
-            }
-        }
+        base.UpdateLevelView();
 
         UpdateView();
     }
 
     [SerializeField]
     bool closedTopSide = false, closedBotSide = false, closedLeftSide = false, closedRightSide = false;
-    public override void UpdateView()
+    public void UpdateView()
     {
-        if (TopBuildingArea && TopBuildingArea.CurrentBuilding && !TopBuildingArea.CurrentBuilding.GetComponent<Road>())
-            closedTopSide = true;
-        else
+        if (ConnectedGrid.TopSideGrid && ConnectedGrid.TopSideGrid.CurrentBuilding && ConnectedGrid.TopSideGrid.CurrentBuilding.GetType() == typeof(Road))
             closedTopSide = false;
-        if (BotBuildingArea && BotBuildingArea.CurrentBuilding && !BotBuildingArea.CurrentBuilding.GetComponent<Road>())
-            closedBotSide = true;
         else
+            closedTopSide = true;
+
+        if (ConnectedGrid.BotSideGrid && ConnectedGrid.BotSideGrid.CurrentBuilding && ConnectedGrid.BotSideGrid.CurrentBuilding.GetType() == typeof(Road))
             closedBotSide = false;
-        if (LeftBuildingArea && LeftBuildingArea.CurrentBuilding && LeftBuildingArea.CurrentBuilding.GetComponent<Road>())
+        else
+            closedBotSide = true;
+
+        if (ConnectedGrid.LeftSideGrid && ConnectedGrid.LeftSideGrid.CurrentBuilding && ConnectedGrid.LeftSideGrid.CurrentBuilding.GetType() == typeof(Road))
             closedLeftSide = false;
         else
             closedLeftSide = true;
-        if (RightBuildingArea && RightBuildingArea.CurrentBuilding && RightBuildingArea.CurrentBuilding.GetComponent<Road>())
+
+        if (ConnectedGrid.RightSideGrid && ConnectedGrid.RightSideGrid.CurrentBuilding && ConnectedGrid.RightSideGrid.CurrentBuilding.GetType() == typeof(Road))
             closedRightSide = false;
         else
             closedRightSide = true;
 
         int roadVariationIndex = 0;
-        if (!closedTopSide && !closedBotSide && closedLeftSide && closedRightSide)
-        {
+
+        if (closedTopSide && closedBotSide && closedLeftSide && closedRightSide)
             roadVariationIndex = 0;
-        }
-        else if (!closedTopSide && !closedBotSide && !closedLeftSide && !closedRightSide)
-        {
+        else
+        if (closedTopSide && !closedBotSide && closedLeftSide && closedRightSide)
+            roadVariationIndex = 0;
+        else
+        if (!closedTopSide && closedBotSide && closedLeftSide && closedRightSide)
+            roadVariationIndex = 0;
+        else
+        if (!closedTopSide && !closedBotSide && closedLeftSide && closedRightSide)
+            roadVariationIndex = 0;
+
+        else
+        if (closedTopSide && closedBotSide && !closedLeftSide && closedRightSide)
             roadVariationIndex = 1;
-        }
-        else if (!closedTopSide && !closedBotSide && closedLeftSide && !closedRightSide)
-        {
-            roadVariationIndex = 2;
-        }
-        else if (!closedTopSide && !closedBotSide && !closedLeftSide && closedRightSide)
-        {
+        else
+        if (closedTopSide && !closedBotSide && !closedLeftSide && closedRightSide)
+            roadVariationIndex = 1;
+        else
+        if (!closedTopSide && closedBotSide && !closedLeftSide && closedRightSide)
             roadVariationIndex = 3;
-        }
-        else if (closedTopSide && !closedBotSide && closedLeftSide && !closedRightSide)
-        {
+        else
+        if (!closedTopSide && !closedBotSide && !closedLeftSide && closedRightSide)
+            roadVariationIndex = 3;
+
+        else
+        if (closedTopSide && closedBotSide && closedLeftSide && !closedRightSide)
+            roadVariationIndex = 2;
+        else
+        if (closedTopSide && !closedBotSide && closedLeftSide && !closedRightSide)
+            roadVariationIndex = 2;
+        else
+        if (!closedTopSide && closedBotSide && closedLeftSide && !closedRightSide)
             roadVariationIndex = 4;
-        }
-        else if (closedTopSide && !closedBotSide && !closedLeftSide && closedRightSide)
-        {
+        else
+        if (!closedTopSide && !closedBotSide && closedLeftSide && !closedRightSide)
+            roadVariationIndex = 4;
+
+        else
+        if (!closedTopSide && !closedBotSide && !closedLeftSide && !closedRightSide)
             roadVariationIndex = 5;
-        }
+
+        else
+        if (closedTopSide && closedBotSide && !closedLeftSide && !closedRightSide)
+            roadVariationIndex = 6;
+
+        else
+        if (!closedTopSide && closedBotSide && !closedLeftSide && !closedRightSide)
+            roadVariationIndex = 7;
+
+        else
+        if (closedTopSide && !closedBotSide && !closedLeftSide && !closedRightSide)
+            roadVariationIndex = 8;
+
+        Debug.Log(ID + " | " + closedLeftSide + " | " + roadVariationIndex);
 
         for (int i = 0; i < RoadVariations.Length; i++)
         {

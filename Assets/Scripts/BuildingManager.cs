@@ -17,16 +17,11 @@ public class BuildingManager : MonoBehaviour
         Instance = this;
     }
 
-    public Road FirstRoad;
     public Building[] AllBuildingPrefabs;
 
-    public Building SelectedBuilding;
+    public Grid SelectedGrid;
     public BuildingArea SelectedBuildingArea;
-
-    private void Start()
-    {
-        FirstRoad.Initialize("0");
-    }
+    public Building SelectedBuilding;
 
     public Building GetBuildPrefabByTypeID(string typeID)
     {
@@ -41,10 +36,15 @@ public class BuildingManager : MonoBehaviour
         return null;
     }
 
+    public void ChangeSelectedGrid(Grid grid = null)
+    {
+        if (SelectedGrid != null)
+            SelectedGrid.ChangeVisibilityOfBuildingAreas();
+        SelectedGrid = grid;
+    }
+
     public void ChangeSelectedBuildingArea(BuildingArea buildingArea = null)
     {
-        if (SelectedBuildingArea && SelectedBuildingArea.AreaViewGroup.activeSelf)
-            SelectedBuildingArea.ChangeVisibilityOfViewGroup();
         SelectedBuildingArea = buildingArea;
     }
 
@@ -55,6 +55,13 @@ public class BuildingManager : MonoBehaviour
 
     public void BuildTheSelectedBuildingToSelectedArea()
     {
-        SelectedBuildingArea.BuildTheTargetBuilding(SelectedBuilding);
+        if(SelectedBuildingArea && SelectedBuilding)
+            SelectedBuildingArea.BuildToConnectedGrid(SelectedBuilding);
+    }
+
+    public void LevelUpTheBuildingFromSelectedBuildingArea()
+    {
+        if (SelectedBuildingArea && SelectedBuildingArea.ConnectedGrid && SelectedBuildingArea.ConnectedGrid.CurrentBuilding)
+            SelectedBuildingArea.ConnectedGrid.CurrentBuilding.LevelUp();
     }
 }

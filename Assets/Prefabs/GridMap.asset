@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5c97e06776b4f109633ff18abbb9d2, type: 3}
+  m_Name: GridMap
+  m_EditorClassIdentifier: 
+  RowCount: 50
+  ColumnCount: 50
+  GridPrefab: {fileID: -4528661715747012282, guid: 93f69efb67ab14525968964b950e743d,
+    type: 3}
+  ReadyGridInfos:
+  - ColoumnAndRow: {x: 25, y: 26}
+    BuildingPrefab: {fileID: 6831683165991928312, guid: bd71e66ac67164eeba16dfc9c93abfe1,
+      type: 3}
+    BuildingLevel: 0

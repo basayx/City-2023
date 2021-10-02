@@ -65,21 +65,33 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter(Collider col)
 	{
+		var grid = col.gameObject.GetComponent<Grid>();
+		if (grid)
+		{
+			BuildingManager.Instance.ChangeSelectedGrid(grid);
+			grid.ChangeVisibilityOfBuildingAreas(true);
+		}
+
 		var buildingArea = col.gameObject.GetComponent<BuildingArea>();
 		if (buildingArea)
 		{
 			BuildingManager.Instance.ChangeSelectedBuildingArea(buildingArea);
-			buildingArea.ChangeVisibilityOfViewGroup(true);
 		}
 	}
 
 	private void OnTriggerExit(Collider col)
 	{
+		var grid = col.gameObject.GetComponent<Grid>();
+        if (grid && grid == BuildingManager.Instance.SelectedGrid)
+		{
+			BuildingManager.Instance.ChangeSelectedGrid(null);
+			grid.ChangeVisibilityOfBuildingAreas(false);
+        }
+
 		var buildingArea = col.gameObject.GetComponent<BuildingArea>();
 		if (buildingArea && buildingArea == BuildingManager.Instance.SelectedBuildingArea)
 		{
 			BuildingManager.Instance.ChangeSelectedBuildingArea(null);
-			buildingArea.ChangeVisibilityOfViewGroup(false);
 		}
 	}
 }
