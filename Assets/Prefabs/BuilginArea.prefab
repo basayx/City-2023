@@ -220,11 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be84dfa6aae7c4371918ea275e04ea8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectedBuilding: {fileID: 0}
+  ConnectedGrid: {fileID: 0}
   Side: 0
-  ID: 
-  CurrentBuilding: {fileID: 0}
   AreaViewGroup: {fileID: 1561537065506808090}
+  AreaViewSprite: {fileID: 6854181199110578420}
 --- !u!65 &8875281634818254250
 BoxCollider:
   m_ObjectHideFlags: 0

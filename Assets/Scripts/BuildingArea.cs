@@ -15,6 +15,7 @@ public class BuildingArea : MonoBehaviour
     public Sides Side;
 
     public GameObject AreaViewGroup;
+    public SpriteRenderer AreaViewSprite;
 
     public void Initialize(Grid connectedGrid = null)
     {

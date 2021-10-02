@@ -45,7 +45,10 @@ public class BuildingManager : MonoBehaviour
 
     public void ChangeSelectedBuildingArea(BuildingArea buildingArea = null)
     {
+        if(SelectedBuildingArea != null)
+            SelectedBuildingArea.AreaViewSprite.color = new Color32(255, 255, 255, 255);
         SelectedBuildingArea = buildingArea;
+        SelectedBuildingArea.AreaViewSprite.color = new Color32(255, 244, 0, 255);
     }
 
     public void ChangeSelectedBuilding(string typeID)
