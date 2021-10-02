@@ -74,6 +74,8 @@ public class BuildingManager : MonoBehaviour
     public void ChangeSelectedBuildingArea(BuildingArea buildingArea = null)
     {
         buildDelayLeft = BuildDelay;
+        if (buildingArea == null)
+            GameManager.Instance.Player.Animator.SetBool("Working", false);
         if(SelectedBuildingArea != null)
             SelectedBuildingArea.ChangeSelectedStatus(false);
 
