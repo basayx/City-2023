@@ -111,14 +111,18 @@ public class QuestManager : MonoBehaviour
         IEnumerator Delay()
         {
             yield return new WaitForSeconds(delay);
-            if(SelectedQuest.Status == "Collected")
+            UpdateQuestsList();
+            GeneralPanelsGroup.SetActive(true);
+            CameraController.Instance.BackToMainPos();
+            if (SelectedQuest.Status == "Collected")
             {
+                while (!CameraController.Instance.IsReady)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
                 AQuestCollected(SelectedQuest);
             }
             SelectedQuest = null;
-            CameraController.Instance.BackToMainPos();
-            GeneralPanelsGroup.SetActive(true);
-
         }
     }
 
@@ -170,7 +174,7 @@ public class QuestManager : MonoBehaviour
         DataManager.Instance.MoneyIncrease(SelectedQuest.QuestSO.MoneyPrizeAmount);
         DataManager.Instance.SaveQuestStatus(SelectedQuest.ConnectedGrid.ID, SelectedQuest.QuestSO.ID, "Collected");
         CloseDialoguePanel();
-        UnSelectQuest(1f);
+        UnSelectQuest(0.5f);
     }
 
     public void AQuestCompleted(Quest quest)
@@ -183,6 +187,5 @@ public class QuestManager : MonoBehaviour
     {
         CurrentActiveQuests.Remove(quest);
         Destroy(quest.gameObject);
-        UpdateQuestsList();
     }
 }
