@@ -33,7 +33,7 @@ MonoBehaviour:
     QuestAttachment: {fileID: 11400000, guid: d7f31c1a5d86f429b9e1a71f69048b98, type: 2}
   - ColoumnAndRow: {x: 22, y: 27}
     Side: 1
-    BuildingPrefab: {fileID: 848672545505822477, guid: 5f5c34a9e0823420bb096352c4474717,
+    BuildingPrefab: {fileID: 5287118852898690566, guid: 5f5c34a9e0823420bb096352c4474717,
       type: 3}
     BuildingLevel: 0
     OnlyForThisTypesBuildings: 

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
@@ -124,5 +125,15 @@ public class BuildingManager : MonoBehaviour
     public void BuildingsPanelOpenOrClose(bool status)
     {
         BuildingsPanel.SetActive(status);
+    }
+
+    public static IEnumerator DoScale(Transform _transform)
+    {
+        Debug.Log(_transform.gameObject.name);
+        Vector3 targetScale = _transform.localScale;
+        _transform.localScale = Vector3.zero;
+        Sequence seq = DOTween.Sequence().Append(_transform.DOScale(targetScale * 1.1f, .25f)).Append(_transform.DOScale(targetScale, .1f));
+
+        yield return seq.WaitForCompletion();
     }
 }

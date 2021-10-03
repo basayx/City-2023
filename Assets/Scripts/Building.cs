@@ -72,6 +72,8 @@ public class Building : MonoBehaviour
 
             UpdateLevelView();
         }
+
+        BuildingManager.Instance.StartCoroutine(BuildingManager.DoScale(transform));
     }
 
     public void PlacementBySavedPosition()

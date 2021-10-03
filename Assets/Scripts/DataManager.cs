@@ -32,12 +32,14 @@ public class DataManager : MonoBehaviour
     public int MoneyIncrease(int incereaseValue)
     {
         Money += incereaseValue;
+        MenuManager.Instance.UpdateMoneyText();
         return Money;
     }
 
     public int MoneyDecrease(int decreaseValue)
     {
         Money += decreaseValue;
+        MenuManager.Instance.UpdateMoneyText();
         return Money;
     }
 

@@ -1,13 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
 
 public class MenuManager : MonoBehaviour
 {
+    public static MenuManager Instance;
+
+    private void Awake()
+    {
+        if (Instance)
+        {
+            Destroy(this);
+            return;
+        }
+
+        Instance = this;
+    }
+
     public GameObject MenuCanvas;
     public GameObject GameCanvas;
     public Transform MenuStartPos;
     public Transform GameStartCamPos;
+
+    public TextMeshProUGUI MoneyText;
+    public GameObject MoneyBar;
+
+    private void Start()
+    {
+        UpdateMoneyText();
+    }
 
     public void PlayButton()
     {
@@ -32,6 +55,7 @@ public class MenuManager : MonoBehaviour
         MenuStartPos.transform.position = new Vector3(CameraController.Instance.transform.position.x, MenuStartPos.transform.position.y, CameraController.Instance.transform.position.z);
 
         BuildingManager.Instance.ChangeSelectedBuildingArea(null);
+        BuildingManager.Instance.ChangeSelectedGrid(null);
 
         GameCanvas.SetActive(false);
 
@@ -47,5 +71,12 @@ public class MenuManager : MonoBehaviour
             PlayerController.Instance.CanMove = false;
             MenuCanvas.SetActive(true);
         }
+    }
+
+    public void UpdateMoneyText()
+    {
+        MoneyText.text = DataManager.Money.ToString();
+        MoneyBar.transform.DORewind();
+        MoneyBar.transform.DOPunchScale(new Vector3(.25f, .25f, .25f), .25f);
     }
 }
