@@ -7,8 +7,11 @@ public class Road : Building
     public GameObject[] RoadVariations;
     public GameObject[] RoadEdgeColliders;
 
+    //public TrafficSide TrafficSide;
+
     public override void Initialize(string id, Grid connectedGrid = null, bool newCreated = false)
     {
+        //TrafficSide.Initialize();
         base.Initialize(id, connectedGrid, newCreated);
     }
 
@@ -19,8 +22,7 @@ public class Road : Building
         UpdateView();
     }
 
-    [SerializeField]
-    bool closedTopSide = false, closedBotSide = false, closedLeftSide = false, closedRightSide = false;
+    public bool closedTopSide = false, closedBotSide = false, closedLeftSide = false, closedRightSide = false;
     public void UpdateView()
     {
         if (ConnectedGrid.TopSideGrid && ConnectedGrid.TopSideGrid.CurrentBuilding && (ConnectedGrid.TopSideGrid.CurrentBuilding.GetType() == typeof(Road) || ConnectedGrid.TopSideGrid.IsABuildingEnterance))
