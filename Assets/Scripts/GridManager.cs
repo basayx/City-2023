@@ -34,6 +34,16 @@ public class GridManager : MonoBehaviour
         {
             int gridIndex = GetGridIndex(readyGridInfo.ColoumnAndRow.y, readyGridInfo.ColoumnAndRow.x);
             DataManager.Instance.SaveBuildingID(gridIndex.ToString(), readyGridInfo.BuildingPrefab.TypeID);
+            string side = "T";
+            if (readyGridInfo.Side == Sides.T)
+                side = "T";
+            else if (readyGridInfo.Side == Sides.B)
+                side = "B";
+            else if (readyGridInfo.Side == Sides.L)
+                side = "L";
+            else if (readyGridInfo.Side == Sides.R)
+                side = "R";
+            DataManager.Instance.SaveBuildingCreationSideInfo(DataManager.Instance.GetSavedBuildingID(gridIndex.ToString()), side);
             DataManager.Instance.SaveBuildingLevel(gridIndex.ToString(), readyGridInfo.BuildingLevel);
         }
 

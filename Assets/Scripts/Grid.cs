@@ -21,6 +21,8 @@ public class Grid : MonoBehaviour
     public BuildingArea LeftBuildingArea;
     public BuildingArea RightBuildingArea;
 
+    public bool IsABuildingEnterance = false;
+
     public void Initialize(string id)
     {
         ID = id;

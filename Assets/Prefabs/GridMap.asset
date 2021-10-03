@@ -18,6 +18,12 @@ MonoBehaviour:
     type: 3}
   ReadyGridInfos:
   - ColoumnAndRow: {x: 25, y: 26}
+    Side: 0
     BuildingPrefab: {fileID: 6831683165991928312, guid: bd71e66ac67164eeba16dfc9c93abfe1,
+      type: 3}
+    BuildingLevel: 0
+  - ColoumnAndRow: {x: 25, y: 27}
+    Side: 0
+    BuildingPrefab: {fileID: 563700613251910597, guid: 2063a471faa3b4e679a059e934e3b188,
       type: 3}
     BuildingLevel: 0

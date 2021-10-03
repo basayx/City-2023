@@ -12,6 +12,7 @@ public class GridMapSO : ScriptableObject
     public struct ReadyGridInfo
     {
         public Vector2Int ColoumnAndRow;
+        public Sides Side;
         public Building BuildingPrefab;
         public int BuildingLevel;
     }

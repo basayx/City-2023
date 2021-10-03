@@ -22,10 +22,13 @@ public class Building : MonoBehaviour
 
     public BuildingArea CreatedFromThisArea;
 
+    public bool IsHaveBuildingEnterance = false;
+
     public virtual void Initialize(string id, Grid connectedGrid = null, bool newCreated = false)
     {
         ID = id;
         ConnectedGrid = connectedGrid;
+        ConnectedGrid.IsABuildingEnterance = IsHaveBuildingEnterance;
 
         //if(!newCreated)
         //    PlacementBySavedPosition();
@@ -36,6 +39,8 @@ public class Building : MonoBehaviour
         string creationSide = DataManager.Instance.GetBuildingCreationSideInfo(ID);        
         if (creationSide != "")
         {
+            //HACK: İşin aslında burada doğrudan bağlı olunan griddeki areaya değil bağlı olunan gridin bağlı olduğu gridin areası alınmalı.
+            //Ancak bu bilgi şu an sadece rotasyon için kullanıldığından böyle bırakıyorum.
             if (creationSide == "T" && ConnectedGrid.TopBuildingArea)
                 CreatedFromThisArea = ConnectedGrid.TopBuildingArea;
             else if (creationSide == "B" && ConnectedGrid.BotBuildingArea)
@@ -49,7 +54,7 @@ public class Building : MonoBehaviour
         if (this.GetType() != typeof(Road))
             transform.localRotation = Quaternion.Euler(0, CreatedFromThisArea.transform.localEulerAngles.y, 0);
 
-        GridManager.Instance.FillOtherGridsBySize(this, (CreatedFromThisArea ? CreatedFromThisArea.Side :Sides.T));
+        GridManager.Instance.FillOtherGridsBySize(this, (CreatedFromThisArea ? CreatedFromThisArea.Side : Sides.T));
 
         if (newCreated)
         {

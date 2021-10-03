@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 	private void OnTriggerEnter(Collider col)
 	{
 		var grid = col.gameObject.GetComponent<Grid>();
-		if (grid)
+		if (grid && Physics.CheckSphere(GroundCheck.position, GroundDistance, GroundMask))
 		{
 			BuildingManager.Instance.ChangeSelectedGrid(grid);
 			grid.ChangeVisibilityOfBuildingAreas(true);
