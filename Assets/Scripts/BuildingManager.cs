@@ -89,7 +89,13 @@ public class BuildingManager : MonoBehaviour
     public void SelectBuildingUIButton(BuildingUIButton buildingUIButton)
     {
         if (SelectedBuildingUIButton)
+        {
             SelectedBuildingUIButton.ChangeHighlighStatus(false);
+
+            if (SelectedBuildingUIButton.TargetBuildingTypeID == buildingUIButton.TargetBuildingTypeID)
+                return;
+        }
+
         SelectedBuildingUIButton = buildingUIButton;
         SelectedBuildingUIButton.ChangeHighlighStatus(true);
 
@@ -107,6 +113,12 @@ public class BuildingManager : MonoBehaviour
     {
         if(SelectedBuildingArea && SelectedBuilding)
             SelectedBuildingArea.BuildToConnectedGrid(SelectedBuilding);
+
+        if (SelectedBuilding.GetType() != typeof(Road))
+        {
+            SelectedBuildingArea.ChangeSelectedStatus(false);
+            ChangeSelectedBuilding(null);
+        }
 
         ChangeSelectedBuildingArea(null);
     }
