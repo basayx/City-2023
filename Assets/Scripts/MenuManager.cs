@@ -24,6 +24,7 @@ public class MenuManager : MonoBehaviour
     public Transform MenuStartPos;
     public Transform GameStartCamPos;
 
+    public GameObject MoneyCanvas;
     public TextMeshProUGUI MoneyText;
     public GameObject MoneyBar;
 

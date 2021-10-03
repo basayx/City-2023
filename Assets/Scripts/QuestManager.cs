@@ -91,6 +91,9 @@ public class QuestManager : MonoBehaviour
 
     public void AQuestSelected(Quest quest)
     {
+        if (!CameraController.Instance.IsReady)
+            return;
+
         GeneralPanelsGroup.SetActive(false);
         SelectedQuest = quest;
         CameraController.Instance.MoveToTargetPos(quest.CamPos);
@@ -128,6 +131,7 @@ public class QuestManager : MonoBehaviour
 
     public void OpenDialoguePanel(Quest quest)
     {
+        MenuManager.Instance.MoneyCanvas.SetActive(false);
         QuestDescriptionText.text = quest.QuestSO.QuestDescription;
         if (DataManager.Instance.GetQuestStatus(quest.ConnectedGrid.ID, quest.QuestSO.ID) == "Active")
         {
@@ -159,6 +163,7 @@ public class QuestManager : MonoBehaviour
 
     public void CloseDialoguePanel()
     {
+        MenuManager.Instance.MoneyCanvas.SetActive(true);
         DialoguePanel.SetActive(false);
     }
 

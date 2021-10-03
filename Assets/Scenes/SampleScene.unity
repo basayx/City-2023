@@ -4623,6 +4623,7 @@ MonoBehaviour:
   GameCanvas: {fileID: 209705206}
   MenuStartPos: {fileID: 442396647}
   GameStartCamPos: {fileID: 954003626}
+  MoneyCanvas: {fileID: 259734591}
   MoneyText: {fileID: 1127016548}
   MoneyBar: {fileID: 1127016546}
 --- !u!4 &1215297892

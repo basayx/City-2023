@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 5e85b018b134643a086e87f0a661671d,
+  m_Motion: {fileID: -203655887218126122, guid: 1ed12622f58d81148a214917e856d147,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 0d43fa2d9edd4402cbd1885b5bf35768,
+  m_Motion: {fileID: -203655887218126122, guid: f79eca0f48b854645b3e4e35fe420bb6,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -112,7 +112,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NPCAnimator
+  m_Name: NPCHospital
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Happy

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Quest_EveYakinMetro : Quest
 {
-    public Animator NPCAnimator;
     public SubwayKid SubwayKid;
 
     public override void CheckStatus()
@@ -28,7 +27,6 @@ public class Quest_EveYakinMetro : Quest
 
     public override void QuestCompleted()
     {
-        NPCAnimator.SetTrigger("Happy");
         SubwayKid.GraphicAnimator.SetTrigger("Happy");
         base.QuestCompleted();
     }
