@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestSO: {fileID: 0}
   ConnectedGrid: {fileID: 0}
-  StartDelay: 1
+  StartDelay: 20
   Status: Inactive
   CamPos: {fileID: 243285334382815537}
   SubwayKid: {fileID: 262659551372539577}

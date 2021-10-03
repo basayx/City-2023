@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestSO: {fileID: 0}
   ConnectedGrid: {fileID: 0}
-  StartDelay: 1
+  StartDelay: 40
   Status: Inactive
   CamPos: {fileID: 8589163074572959167}
   NPCAnimator: {fileID: 289723527646879241}
