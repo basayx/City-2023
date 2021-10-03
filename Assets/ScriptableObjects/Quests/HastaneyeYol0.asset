@@ -16,9 +16,9 @@ MonoBehaviour:
   QuestPrefab: {fileID: 4809445760319018394, guid: 709ae2d42e0a74734a367473ed65e1df,
     type: 3}
   QuestImageSprite: {fileID: 21300000, guid: 4ac9e2b3cf62e4db4b709dbe2397c255, type: 3}
-  TalkerName: Yorgun Birisi
-  RequestTalk: "Say\u0131n ba\u015Fkan... Hastaneye gelmi\u015Ftim ancak geri d\xF6nemiyorum.
-    Bu hastaneye mutlaka yol ula\u015Ft\u0131r\u0131lmas\u0131 gerekli!"
+  TalkerName: Ali Bey
+  RequestTalk: "Ambulanslar hastaneye giri\u015F yapam\u0131yor. Hastaneye ara\xE7lar\u0131n
+    ula\u015Fabilmesi i\xE7in yeni bir yol gerekli."
   QuestDescription: "Hastane giri\u015Fine yol ula\u015Ft\u0131r."
   ResultTalk: "Yard\u0131mlar\u0131n\u0131z i\xE7in \xE7ok te\u015Fekk\xFCrler..."
   MoneyPrizeAmount: 100
