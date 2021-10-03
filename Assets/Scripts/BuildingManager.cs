@@ -91,9 +91,11 @@ public class BuildingManager : MonoBehaviour
         if (SelectedBuildingUIButton)
         {
             SelectedBuildingUIButton.ChangeHighlighStatus(false);
-
             if (SelectedBuildingUIButton.TargetBuildingTypeID == buildingUIButton.TargetBuildingTypeID)
+            {
+                SelectedBuildingUIButton = null;
                 return;
+            }
         }
 
         SelectedBuildingUIButton = buildingUIButton;
@@ -118,6 +120,7 @@ public class BuildingManager : MonoBehaviour
         {
             SelectedBuildingArea.ChangeSelectedStatus(false);
             ChangeSelectedBuilding(null);
+            SelectBuildingUIButton(SelectedBuildingUIButton);
         }
 
         ChangeSelectedBuildingArea(null);

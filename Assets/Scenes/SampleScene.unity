@@ -284,7 +284,7 @@ MonoBehaviour:
   BorderImage: {fileID: 47122583}
   DefaultColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2449438720
   HighlightColor:
     serializedVersion: 2
     rgba: 4278512639
@@ -850,7 +850,7 @@ MonoBehaviour:
   BorderImage: {fileID: 254868317}
   DefaultColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2449438720
   HighlightColor:
     serializedVersion: 2
     rgba: 4278512639
@@ -2423,7 +2423,7 @@ MonoBehaviour:
   BorderImage: {fileID: 681996276}
   DefaultColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2449438720
   HighlightColor:
     serializedVersion: 2
     rgba: 4278512639
@@ -2727,7 +2727,7 @@ MonoBehaviour:
   BorderImage: {fileID: 703905825}
   DefaultColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2449438720
   HighlightColor:
     serializedVersion: 2
     rgba: 4278512639
@@ -4174,7 +4174,7 @@ MonoBehaviour:
   BorderImage: {fileID: 1022710290}
   DefaultColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2449438720
   HighlightColor:
     serializedVersion: 2
     rgba: 4278512639
@@ -4734,7 +4734,7 @@ MonoBehaviour:
   BorderImage: {fileID: 1086098007}
   DefaultColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2449438720
   HighlightColor:
     serializedVersion: 2
     rgba: 4278512639
@@ -5265,7 +5265,7 @@ MonoBehaviour:
   BorderImage: {fileID: 1184768612}
   DefaultColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2449438720
   HighlightColor:
     serializedVersion: 2
     rgba: 4278512639
@@ -6574,7 +6574,7 @@ MonoBehaviour:
   BorderImage: {fileID: 1388160289}
   DefaultColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2449438720
   HighlightColor:
     serializedVersion: 2
     rgba: 4278512639
@@ -8695,7 +8695,7 @@ MonoBehaviour:
   BorderImage: {fileID: 1986988236}
   DefaultColor:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2449438720
   HighlightColor:
     serializedVersion: 2
     rgba: 4278512639
