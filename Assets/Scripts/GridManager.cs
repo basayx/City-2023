@@ -33,6 +33,7 @@ public class GridManager : MonoBehaviour
         foreach (GridMapSO.ReadyGridInfo readyGridInfo in CurrentGridMap.ReadyGridInfos)
         {
             int gridIndex = GetGridIndex(readyGridInfo.ColoumnAndRow.y, readyGridInfo.ColoumnAndRow.x);
+
             if(readyGridInfo.QuestAttachment)
                 DataManager.Instance.SaveQuestAttachmentToGrid(gridIndex.ToString(), readyGridInfo.QuestAttachment.ID);
 
@@ -61,6 +62,13 @@ public class GridManager : MonoBehaviour
                 grid.transform.position = new Vector3(c * CurrentGridMap.GridPrefab.transform.localScale.x, 0, r * CurrentGridMap.GridPrefab.transform.localScale.z);
                 grid.RowIndex = r;
                 grid.ColoumnIndex = c;
+
+                foreach (GridMapSO.ReadyGridInfo readyGridInfo in CurrentGridMap.ReadyGridInfos)
+                {
+                    if (readyGridInfo.ColoumnAndRow.x == c && readyGridInfo.ColoumnAndRow.y == r)
+                        grid.OnlyForThisTypesBuildings = readyGridInfo.OnlyForThisTypesBuildings;
+                }
+
                 grid.Initialize(Grids.Count.ToString());
                 Grids.Add(grid);
             }
@@ -78,6 +86,8 @@ public class GridManager : MonoBehaviour
             if(grid.CurrentBuilding)
                 grid.CurrentBuilding.UpdateLevelView();
         }
+
+        QuestManager.Instance.CheckActiveQuests();
     }
 
     public Grid GetGrid(int rowIndex, int coloumnIndex)
@@ -158,6 +168,49 @@ public class GridManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public Grid GetGridByReferanceGrid(Grid mainGrid, int rowDif, int coloumnDif, Sides side)
+    {
+        if (side == Sides.T)
+        {
+            int row = mainGrid.RowIndex + rowDif;
+            int coloumn = mainGrid.ColoumnIndex + coloumnDif;
+
+            Grid grid = GetGrid(row, coloumn);
+
+            if (grid != null)
+                return grid;
+        }
+        else if (side == Sides.B)
+        {
+            int row = mainGrid.RowIndex - rowDif;
+            int coloumn = mainGrid.ColoumnIndex - coloumnDif;
+            Grid grid = GetGrid(row, coloumn);
+
+            if (grid != null)
+                return grid;
+        }
+        else if (side == Sides.L)
+        {
+            int row = mainGrid.RowIndex + coloumnDif;
+            int coloumn = mainGrid.ColoumnIndex - rowDif;
+            Grid grid = GetGrid(row, coloumn);
+
+            if (grid != null)
+                return grid;
+        }
+        else if (side == Sides.R)
+        {
+            int row = mainGrid.RowIndex - coloumnDif;
+            int coloumn = mainGrid.ColoumnIndex + rowDif;
+            Grid grid = GetGrid(row, coloumn);
+
+            if (grid != null)
+                return grid;
+        }
+
+        return null;
     }
 
     public void FillOtherGridsBySize(Building building, Sides side = Sides.T)

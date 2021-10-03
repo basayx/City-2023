@@ -15,6 +15,7 @@ public class GridMapSO : ScriptableObject
         public Sides Side;
         public Building BuildingPrefab;
         public int BuildingLevel;
+        public string OnlyForThisTypesBuildings;//type0 type1 type3...
         public QuestSO QuestAttachment;
     }
     public List<ReadyGridInfo> ReadyGridInfos = new List<ReadyGridInfo>();

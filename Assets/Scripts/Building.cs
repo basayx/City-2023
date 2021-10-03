@@ -30,7 +30,8 @@ public class Building : MonoBehaviour
         ConnectedGrid = connectedGrid;
         ConnectedGrid.IsABuildingEnterance = IsHaveBuildingEnterance;
 
-        QuestManager.Instance.CheckActiveQuests();
+        if(newCreated)
+            QuestManager.Instance.CheckActiveQuests();
 
         //if(!newCreated)
         //    PlacementBySavedPosition();

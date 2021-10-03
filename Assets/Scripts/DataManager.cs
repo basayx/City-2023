@@ -119,6 +119,7 @@ public class DataManager : MonoBehaviour
 
     public void SaveQuestAttachmentToGrid(string gridID, string questID)
     {
+        Debug.Log(gridID + "_" + questID);
         PlayerPrefs.SetString(gridID + "_Quest", questID);
     }
 

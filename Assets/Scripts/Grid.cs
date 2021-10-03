@@ -22,7 +22,7 @@ public class Grid : MonoBehaviour
     public BuildingArea RightBuildingArea;
 
     public bool IsABuildingEnterance = false;
-
+    public string OnlyForThisTypesBuildings;
     public QuestSO QuestAttachment = null;
 
     public void Initialize(string id)
@@ -133,6 +133,7 @@ public class Grid : MonoBehaviour
 
         Building building = Build(buildingPrefab, buildingArea.transform.localEulerAngles.y);
         CurrentBuilding = building;
+        buildingArea.gameObject.SetActive(false);
 
         DataManager.Instance.SaveBuildingID(ID, buildingPrefab.TypeID);
 
