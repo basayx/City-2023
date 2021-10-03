@@ -28,6 +28,8 @@ public class QuestManager : MonoBehaviour
     public QuestUIIcon QuestUIIconPrefab;
 
     public Quest SelectedQuest = null;
+    public GameObject TalkerNamePanel;
+    public TextMeshProUGUI TalkerNameText;
     public GameObject DialoguePanel;
     public TextMeshProUGUI DialogueText;
     public GameObject DescriptionPanel;
@@ -132,7 +134,15 @@ public class QuestManager : MonoBehaviour
     public void OpenDialoguePanel(Quest quest)
     {
         MenuManager.Instance.MoneyCanvas.SetActive(false);
+
+        if (quest.QuestSO.TalkerName != "")
+            TalkerNamePanel.SetActive(true);
+        else
+            TalkerNamePanel.SetActive(false);
+        TalkerNameText.text = quest.QuestSO.TalkerName;
+
         QuestDescriptionText.text = quest.QuestSO.QuestDescription;
+
         if (DataManager.Instance.GetQuestStatus(quest.ConnectedGrid.ID, quest.QuestSO.ID) == "Active")
         {
             DescriptionPanel.SetActive(true);

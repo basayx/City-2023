@@ -80,20 +80,6 @@ MonoBehaviour:
     BuildingLevel: 0
     OnlyForThisTypesBuildings: 
     QuestAttachment: {fileID: 0}
-  - ColoumnAndRow: {x: 22, y: 27}
-    Side: 1
-    BuildingPrefab: {fileID: 6831683165991928312, guid: bd71e66ac67164eeba16dfc9c93abfe1,
-      type: 3}
-    BuildingLevel: 0
-    OnlyForThisTypesBuildings: 
-    QuestAttachment: {fileID: 0}
-  - ColoumnAndRow: {x: 21, y: 27}
-    Side: 1
-    BuildingPrefab: {fileID: 6831683165991928312, guid: bd71e66ac67164eeba16dfc9c93abfe1,
-      type: 3}
-    BuildingLevel: 0
-    OnlyForThisTypesBuildings: 
-    QuestAttachment: {fileID: 0}
   - ColoumnAndRow: {x: 22, y: 23}
     Side: 1
     BuildingPrefab: {fileID: 6831683165991928312, guid: bd71e66ac67164eeba16dfc9c93abfe1,
@@ -130,20 +116,6 @@ MonoBehaviour:
     OnlyForThisTypesBuildings: 
     QuestAttachment: {fileID: 0}
   - ColoumnAndRow: {x: 27, y: 28}
-    Side: 0
-    BuildingPrefab: {fileID: 6831683165991928312, guid: bd71e66ac67164eeba16dfc9c93abfe1,
-      type: 3}
-    BuildingLevel: 0
-    OnlyForThisTypesBuildings: 
-    QuestAttachment: {fileID: 0}
-  - ColoumnAndRow: {x: 27, y: 25}
-    Side: 0
-    BuildingPrefab: {fileID: 6831683165991928312, guid: bd71e66ac67164eeba16dfc9c93abfe1,
-      type: 3}
-    BuildingLevel: 0
-    OnlyForThisTypesBuildings: 
-    QuestAttachment: {fileID: 0}
-  - ColoumnAndRow: {x: 27, y: 24}
     Side: 0
     BuildingPrefab: {fileID: 6831683165991928312, guid: bd71e66ac67164eeba16dfc9c93abfe1,
       type: 3}

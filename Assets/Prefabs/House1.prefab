@@ -66,7 +66,7 @@ MonoBehaviour:
   MoneyEarnTimer: 10
   MoneyEarnAmount: 20
   MoneyEarnMultiplierPerLevel: 1
-  MoneyEarnParticle: {fileID: 7679768752794238921}
+  MoneyEarnParticle: {fileID: 0}
 --- !u!1 &294069220695841782
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +315,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Money_Notes_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1530339630390668, guid: aa8bfed7e0410cf4696a3a39e2a1476d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4077671208822792, guid: aa8bfed7e0410cf4696a3a39e2a1476d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -431,12 +435,6 @@ PrefabInstance:
 --- !u!4 &7518764983020343641 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4077671208822792, guid: aa8bfed7e0410cf4696a3a39e2a1476d,
-    type: 3}
-  m_PrefabInstance: {fileID: 7518329070597929297}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7679768752794238921 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198858263122052760, guid: aa8bfed7e0410cf4696a3a39e2a1476d,
     type: 3}
   m_PrefabInstance: {fileID: 7518329070597929297}
   m_PrefabAsset: {fileID: 0}

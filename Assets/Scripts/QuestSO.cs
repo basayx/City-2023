@@ -8,6 +8,7 @@ public class QuestSO : ScriptableObject
     public string ID;
     public Quest QuestPrefab;
     public Sprite QuestImageSprite;
+    public string TalkerName;
     [TextArea]
     public string RequestTalk;
     [TextArea]
