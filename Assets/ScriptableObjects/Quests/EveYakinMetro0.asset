@@ -16,8 +16,8 @@ MonoBehaviour:
   QuestPrefab: {fileID: 243285332797419544, guid: ca91ed82f048246fdbc238e3431e481c,
     type: 3}
   QuestImageSprite: {fileID: 21300000, guid: d5b6028ed2b77414f872c4404c6c3b7e, type: 3}
-  RequestTalk: "Say\u0131n ba\u015Fkan... \xC7ocu\u011Fumun okulu evimizden \xE7ok
-    uzakta... Ke\u015Fke yak\u0131nlarda bir metro hatt\u0131 olsayd\u0131."
+  RequestTalk: "Say\u0131n ba\u015Fkan... Okul evimizden \xE7ok uzakta... Ke\u015Fke
+    yak\u0131nlarda bir metro hatt\u0131 olsayd\u0131."
   QuestDescription: "Evin yak\u0131n\u0131na metro dura\u011F\u0131 in\u015Fa et."
   ResultTalk: "Yard\u0131mlar\u0131n\u0131z i\xE7in \xE7ok te\u015Fekk\xFCrler..."
   MoneyPrizeAmount: 100
