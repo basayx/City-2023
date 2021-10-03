@@ -23,6 +23,7 @@ public class BuildingManager : MonoBehaviour
     public BuildingArea SelectedBuildingArea;
     public Building SelectedBuilding;
     public BuildingUIButton SelectedBuildingUIButton;
+    public GameObject BuildingsPanel;
 
     public float BuildDelay = 1f;
     float buildDelayLeft = 1f;
@@ -31,7 +32,7 @@ public class BuildingManager : MonoBehaviour
     {
         if(SelectedBuilding && SelectedBuildingArea )
         {
-            if (!GameManager.Instance.Player.Animator.GetBool("Walking"))
+            if (!PlayerController.Instance.Animator.GetBool("Walking"))
             {
                 if (buildDelayLeft > 0f)
                 {
@@ -75,7 +76,7 @@ public class BuildingManager : MonoBehaviour
     {
         buildDelayLeft = BuildDelay;
         if (buildingArea == null)
-            GameManager.Instance.Player.Animator.SetBool("Working", false);
+            PlayerController.Instance.Animator.SetBool("Working", false);
         if(SelectedBuildingArea != null)
             SelectedBuildingArea.ChangeSelectedStatus(false);
 
@@ -97,6 +98,8 @@ public class BuildingManager : MonoBehaviour
     private void ChangeSelectedBuilding(string typeID)
     {
         SelectedBuilding = GetBuildPrefabByTypeID(typeID);
+        if(SelectedBuildingArea)
+            PlayerController.Instance.Animator.SetBool("Working", true);
     }
 
     public void BuildTheSelectedBuildingToSelectedArea()
@@ -113,9 +116,13 @@ public class BuildingManager : MonoBehaviour
             SelectedBuildingArea.ConnectedGrid.CurrentBuilding.LevelUp();
     }
 
-    public GameObject BuildingsPanel;
     public void BuildingsPanelOpenOrClose()
     {
         BuildingsPanel.SetActive(!BuildingsPanel.activeSelf);
+    }
+
+    public void BuildingsPanelOpenOrClose(bool status)
+    {
+        BuildingsPanel.SetActive(status);
     }
 }

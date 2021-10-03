@@ -16,6 +16,4 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
     }
-
-    public PlayerController Player;
 }

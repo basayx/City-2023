@@ -30,6 +30,8 @@ public class Building : MonoBehaviour
         ConnectedGrid = connectedGrid;
         ConnectedGrid.IsABuildingEnterance = IsHaveBuildingEnterance;
 
+        QuestManager.Instance.CheckActiveQuests();
+
         //if(!newCreated)
         //    PlacementBySavedPosition();
 
@@ -76,7 +78,7 @@ public class Building : MonoBehaviour
         Vector2? positionInfo = DataManager.Instance.GetBuildingPosition(ID);
         if (positionInfo != null)
         {
-            transform.position = new Vector3(((Vector2)positionInfo).x, GameManager.Instance.Player.transform.position.y, ((Vector2)positionInfo).y);
+            transform.position = new Vector3(((Vector2)positionInfo).x, PlayerController.Instance.transform.position.y, ((Vector2)positionInfo).y);
         }
     }
 

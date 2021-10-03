@@ -111,4 +111,24 @@ public class DataManager : MonoBehaviour
     {
         PlayerPrefs.SetString(buildingID + "_CreationSide", value);
     }
+
+    public string GetQuestAttachmentFromGrid(string gridID)
+    {
+        return PlayerPrefs.GetString(gridID + "_Quest", "");
+    }
+
+    public void SaveQuestAttachmentToGrid(string gridID, string questID)
+    {
+        PlayerPrefs.SetString(gridID + "_Quest", questID);
+    }
+
+    public string GetQuestStatus(string gridID, string questID)
+    {        
+        return PlayerPrefs.GetString(gridID + "_" + questID + "_Status", "Inactive");
+    }
+
+    public void SaveQuestStatus(string gridID, string questID, string status)
+    {
+        PlayerPrefs.SetString(gridID + "_" + questID + "_Status", status);
+    }
 }

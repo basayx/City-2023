@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361a8b4de92fb49bab88396958a497f0, type: 3}
+  m_Name: HastaneyeYol0
+  m_EditorClassIdentifier: 
+  ID: HastaneyeYol0
+  QuestPrefab: {fileID: 4809445760319018394, guid: 709ae2d42e0a74734a367473ed65e1df,
+    type: 3}
+  QuestImageSprite: {fileID: 21300000, guid: 4ac9e2b3cf62e4db4b709dbe2397c255, type: 3}
+  RequestTalk: "Say\u0131n ba\u015Fkan... Hastaneye gelmi\u015Ftim ancak geri d\xF6nemiyorum.
+    Bu hastaneye mutlaka yol ula\u015Ft\u0131r\u0131lmas\u0131 gerekli!"
+  QuestDescription: "Hastane giri\u015Fine yol ula\u015Ft\u0131r."
+  ResultTalk: "Yard\u0131mlar\u0131n\u0131z i\xE7in \xE7ok te\u015Fekk\xFCrler..."
+  MoneyPrizeAmount: 100

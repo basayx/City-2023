@@ -23,10 +23,22 @@ public class Grid : MonoBehaviour
 
     public bool IsABuildingEnterance = false;
 
+    public QuestSO QuestAttachment = null;
+
     public void Initialize(string id)
     {
         ID = id;
         gameObject.name = RowIndex + "_" + ColoumnIndex;
+
+        string questID = DataManager.Instance.GetQuestAttachmentFromGrid(ID);
+        if (questID != "")
+        {
+            QuestAttachment = QuestManager.Instance.GetQuestSO(questID);
+            if(QuestAttachment != null)
+            {
+                QuestManager.Instance.InitializeTargetQuest(QuestAttachment, this);
+            }
+        }
     }
 
     public Building Build(Building buildingPrefab, float rotY)

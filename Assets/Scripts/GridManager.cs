@@ -33,18 +33,24 @@ public class GridManager : MonoBehaviour
         foreach (GridMapSO.ReadyGridInfo readyGridInfo in CurrentGridMap.ReadyGridInfos)
         {
             int gridIndex = GetGridIndex(readyGridInfo.ColoumnAndRow.y, readyGridInfo.ColoumnAndRow.x);
-            DataManager.Instance.SaveBuildingID(gridIndex.ToString(), readyGridInfo.BuildingPrefab.TypeID);
-            string side = "T";
-            if (readyGridInfo.Side == Sides.T)
-                side = "T";
-            else if (readyGridInfo.Side == Sides.B)
-                side = "B";
-            else if (readyGridInfo.Side == Sides.L)
-                side = "L";
-            else if (readyGridInfo.Side == Sides.R)
-                side = "R";
-            DataManager.Instance.SaveBuildingCreationSideInfo(DataManager.Instance.GetSavedBuildingID(gridIndex.ToString()), side);
-            DataManager.Instance.SaveBuildingLevel(gridIndex.ToString(), readyGridInfo.BuildingLevel);
+            if(readyGridInfo.QuestAttachment)
+                DataManager.Instance.SaveQuestAttachmentToGrid(gridIndex.ToString(), readyGridInfo.QuestAttachment.ID);
+
+            if(readyGridInfo.BuildingPrefab != null)
+            {
+                DataManager.Instance.SaveBuildingID(gridIndex.ToString(), readyGridInfo.BuildingPrefab.TypeID);
+                string side = "T";
+                if (readyGridInfo.Side == Sides.T)
+                    side = "T";
+                else if (readyGridInfo.Side == Sides.B)
+                    side = "B";
+                else if (readyGridInfo.Side == Sides.L)
+                    side = "L";
+                else if (readyGridInfo.Side == Sides.R)
+                    side = "R";
+                DataManager.Instance.SaveBuildingCreationSideInfo(DataManager.Instance.GetSavedBuildingID(gridIndex.ToString()), side);
+                DataManager.Instance.SaveBuildingLevel(gridIndex.ToString(), readyGridInfo.BuildingLevel);
+            }
         }
 
         for (int r = 0; r < CurrentGridMap.RowCount; r++)

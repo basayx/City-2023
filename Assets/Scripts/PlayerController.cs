@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public static PlayerController Instance;
+
 	public DynamicJoystick Joystick;
 	public CharacterController CharacterController;
 
@@ -21,6 +23,17 @@ public class PlayerController : MonoBehaviour
 	public float GroundDistance = 0.4f;
 	public LayerMask GroundMask;
 
+	private void Awake()
+	{
+		if (Instance)
+		{
+			Destroy(this);
+			return;
+		}
+
+		Instance = this;
+	}
+
 	void Update()
 	{
 		Movement();
@@ -34,6 +47,8 @@ public class PlayerController : MonoBehaviour
 			direction = new Vector3(Joystick.Direction.x, 0, Joystick.Direction.y) * Sensitivity;
 			if (direction.magnitude > 0.05f)
 			{
+				BuildingManager.Instance.BuildingsPanelOpenOrClose(false);
+
 				Animator.SetBool("Walking", true);
 
 				CharacterController.Move(direction * MovementSpeed * Time.deltaTime);
