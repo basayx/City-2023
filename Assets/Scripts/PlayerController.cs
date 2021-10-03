@@ -80,6 +80,9 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter(Collider col)
 	{
+		if (!GameManager.Instance.GameState)
+			return;
+
 		var grid = col.gameObject.GetComponent<Grid>();
 		if (grid && Physics.CheckSphere(GroundCheck.position, GroundDistance, GroundMask))
 		{
@@ -98,6 +101,9 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerExit(Collider col)
 	{
+		if (!GameManager.Instance.GameState)
+			return;
+
 		var grid = col.gameObject.GetComponent<Grid>();
         if (grid && grid == BuildingManager.Instance.SelectedGrid)
 		{
