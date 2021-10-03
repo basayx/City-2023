@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95f5d9f24852440a92c239a23b0e207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentGridMap: {fileID: 11400000, guid: eedd38f1cb2304b74aadea8e8f485340, type: 2}
+  CurrentGridMap: {fileID: 11400000, guid: 1660d0b90eb2a415fbd6921fce4aec19, type: 2}
   Grids: []
 --- !u!4 &333482776
 Transform:

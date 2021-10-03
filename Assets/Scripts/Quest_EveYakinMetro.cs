@@ -33,6 +33,7 @@ public class Quest_EveYakinMetro : Quest
 
     public override void QuestCollected()
     {
+        SubwayKid.transform.parent.parent = ConnectedGrid.transform;
         SubwayKid.Initialize(17f);
         base.QuestCollected();
     }
