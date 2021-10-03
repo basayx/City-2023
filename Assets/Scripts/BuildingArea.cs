@@ -28,10 +28,9 @@ public class BuildingArea : MonoBehaviour
 
     public void BuildToConnectedGrid(Building buildingPrefab)
     {
-        if (!ConnectedGrid || ConnectedGrid.CurrentBuilding != null || !GridManager.Instance.CheckGridSize(ConnectedGrid, buildingPrefab.GridSize.RowSize, buildingPrefab.GridSize.ColoumnSize, Side))
+        if (!ConnectedGrid || ConnectedGrid.CurrentBuilding != null || !GridManager.Instance.CheckGridSize(ConnectedGrid, buildingPrefab.ColoumnsAndRows, Side))
             return;
 
-        Debug.Log("aaa");
         ConnectedGrid.BuildTheTargetBuilding(buildingPrefab, this);
     }
 

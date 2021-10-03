@@ -75,7 +75,8 @@ public class PlayerController : MonoBehaviour
 		var buildingArea = col.gameObject.GetComponent<BuildingArea>();
 		if (buildingArea)
 		{
-			Animator.SetBool("Working", true);
+			if(BuildingManager.Instance.SelectedBuilding)
+				Animator.SetBool("Working", true);
 			BuildingManager.Instance.ChangeSelectedBuildingArea(buildingArea);
 		}
 	}

@@ -8,13 +8,7 @@ public class Building : MonoBehaviour
     public string ID;
     public Grid ConnectedGrid = null;
 
-    [Serializable]
-    public struct GridSizeProperty
-    {
-        public int RowSize;
-        public int ColoumnSize;
-    }
-    public GridSizeProperty GridSize;
+    public List<Vector2Int> ColoumnsAndRows = new List<Vector2Int>();
     public int Level;
 
     [Serializable]
@@ -22,7 +16,7 @@ public class Building : MonoBehaviour
     {
         public int Price;
         public GameObject LevelGroup;
-        public GridSizeProperty GridSize;
+        public List<Vector2Int> ColoumnsAndRows;
     }
     public LevelProperty[] LevelProperties;
 
@@ -37,7 +31,7 @@ public class Building : MonoBehaviour
         //    PlacementBySavedPosition();
 
         Level = DataManager.Instance.GetBuildingLevel(ID);
-        GridSize = LevelProperties[Level].GridSize;
+        ColoumnsAndRows = new List<Vector2Int>(LevelProperties[Level].ColoumnsAndRows);
 
         string creationSide = DataManager.Instance.GetBuildingCreationSideInfo(ID);        
         if (creationSide != "")
@@ -89,7 +83,7 @@ public class Building : MonoBehaviour
 
         LevelProperty levelProperty = LevelProperties[Level + 1];
 
-        if (GridManager.Instance.CheckGridSize(ConnectedGrid, levelProperty.GridSize.RowSize, levelProperty.GridSize.ColoumnSize, (CreatedFromThisArea ? CreatedFromThisArea.Side : Sides.T)) == false)
+        if (GridManager.Instance.CheckGridSize(ConnectedGrid, levelProperty.ColoumnsAndRows, (CreatedFromThisArea ? CreatedFromThisArea.Side : Sides.T)) == false)
             return;
 
         if(DataManager.Money > levelProperty.Price)

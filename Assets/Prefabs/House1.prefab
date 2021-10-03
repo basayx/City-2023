@@ -47,16 +47,20 @@ MonoBehaviour:
   TypeID: House1
   ID: 
   ConnectedGrid: {fileID: 0}
-  GridSize:
-    RowSize: 2
-    ColoumnSize: 2
+  ColoumnsAndRows:
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
   Level: 0
   LevelProperties:
   - Price: 0
     LevelGroup: {fileID: 1677290407847257993}
-    GridSize:
-      RowSize: 2
-      ColoumnSize: 2
+    ColoumnsAndRows:
+    - {x: 0, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: 1}
   CreatedFromThisArea: {fileID: 0}
 --- !u!1 &294069220695841782
 GameObject:

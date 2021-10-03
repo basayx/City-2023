@@ -91,16 +91,14 @@ MonoBehaviour:
   TypeID: House0
   ID: 
   ConnectedGrid: {fileID: 0}
-  GridSize:
-    RowSize: 1
-    ColoumnSize: 1
+  ColoumnsAndRows:
+  - {x: 0, y: 0}
   Level: 0
   LevelProperties:
   - Price: 0
     LevelGroup: {fileID: 847557889919650605}
-    GridSize:
-      RowSize: 1
-      ColoumnSize: 1
+    ColoumnsAndRows:
+    - {x: 0, y: 0}
   CreatedFromThisArea: {fileID: 0}
 --- !u!1001 &848672546800293445
 PrefabInstance:
